@@ -57,31 +57,10 @@
               </div>
             </form>
 
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <button class="btn btn-dark">
-                  <i class="bi bi-plus-lg me-2"></i>New post
-                </button>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Profile</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Switch account</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  >Settings</a
-                >
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Logout</a></li>
-                </ul>
-              </li>
-            </ul>
+            <ul
+              id="navbar-link-container"
+              class="navbar-nav ms-auto justify-content-center align-items-center"
+            ></ul>
           </div>
         </div>
       </nav>
@@ -152,6 +131,162 @@
                   srcset=""
                 />
                 <p class="modal-text lead my-3" style="text-align: justify"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Login Form Modal  -->
+        <div
+          class="modal fade"
+          id="login-form-modal"
+          tabindex="-1"
+          aria-hidden="true"
+          aria-labelledby="login-form-modal"
+        >
+          <div
+            class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal"
+          >
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  data-bs-target="#login-form-modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body p-5 pt-2" id="login-form-modal-body">
+                <form id="login-form" action="">
+                  <h3 class="text-center fw-bold modal-title h3 mb-3">Login</h3>
+                  <p class="fst-italic text-center">
+                    Welcome back. You've been missed.
+                  </p>
+
+                  <div class="form-floating mb-3">
+                    <input
+                      id="login-form-email"
+                      class="form-control rounded-3"
+                      type="email"
+                      placeholder="Email Address"
+                    />
+                    <label for="login-form-email"> Email Address </label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      id="login-form-password"
+                      class="form-control rounded-3"
+                      type="password"
+                      placeholder="Password"
+                    />
+                    <label for="login-form-password"> Password </label>
+                  </div>
+
+                  <div class="text-end">
+                    <a href="#" class="text-muted text-decoration-none"
+                      >Forgot Password?</a
+                    >
+                  </div>
+                  <button
+                    id="login-form-btn"
+                    type="submit"
+                    class="mt-4 btn btn-primary w-100 rounded-pill"
+                  >
+                    Login
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sign Up Form Modal  -->
+        <div
+          class="modal fade"
+          id="signup-form-modal"
+          tabindex="-1"
+          aria-hidden="true"
+          aria-labelledby="signup-form-modal"
+        >
+          <div
+            class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal"
+          >
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  data-bs-target="#signup-form-modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body p-5 pt-2" id="signup-form-modal-body">
+                <form id="signup-form" action="">
+                  <h3 class="text-center fw-bold modal-title h3 mb-3">
+                    Sign Up
+                  </h3>
+                  <p class="fst-italic text-center">
+                    Join our community and share your knowledge
+                  </p>
+                  <div class="mb-3">
+                    <label>Choose your avatar</label>
+                  </div>
+                  <div
+                    class="overflow-scroll avatar-container d-flex align-items-center gap-2 mb-4"
+                  ></div>
+                  <div class="form-floating mt-3 mb-3">
+                    <input
+                      id="signup-form-username"
+                      class="form-control rounded-3"
+                      type="text"
+                      placeholder="Username"
+                    />
+                    <label for="signup-form-username"> Username </label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      id="signup-form-email"
+                      class="form-control rounded-3"
+                      type="email"
+                      placeholder="Email Address"
+                    />
+                    <label for="signup-form-email"> Email Address </label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      id="signup-form-password"
+                      class="form-control rounded-3"
+                      type="password"
+                      placeholder="Password"
+                    />
+                    <label for="signup-form-password"> Password </label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      id="signup-form-confirm-password"
+                      class="form-control rounded-3"
+                      type="password"
+                      placeholder="Confirm Password"
+                    />
+                    <label for="signup-form-confirm-password">
+                      Confirm Password
+                    </label>
+                  </div>
+                  <div class="text-end">
+                    <a href="#" class="text-muted text-decoration-none"
+                      >Already have an account?</a
+                    >
+                  </div>
+                  <button
+                    id="signup-form-btn"
+                    type="submit"
+                    class="mt-4 btn btn-dark w-100 rounded-pill"
+                  >
+                    Sign Up
+                  </button>
+                </form>
               </div>
             </div>
           </div>

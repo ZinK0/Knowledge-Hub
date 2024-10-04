@@ -1,6 +1,16 @@
 let loadedArticles = [];
+let registeredUsers = [];
+let userAvatar;
+let loginState = {
+  isLogin: false,
+  loggedUserID: null,
+};
 const articlesPerPage = 6;
 let currentPage = 1;
+
+// Login Form Modal
+let loginFormModal = new bootstrap.Modal($("#login-form-modal"), {});
+let signUpFormModal = new bootstrap.Modal($("#signup-form-modal"), {});
 
 // Navbar collapse function
 (() => {
@@ -27,6 +37,109 @@ async function fetchData(url) {
 // Async that fetch the data from json file and display it
 async function fetchAndRender() {
   try {
+    // Fetch registered users
+    registeredUsers = await fetchData("assets/data/users.json");
+    console.log(registeredUsers);
+    saveLocalStorage("users", registeredUsers);
+    loadLocalStorage();
+    checkLoginStatus();
+
+    // Authenticate the user with username and password from local storage
+    function authenticateUser(registeredUsers, email, password) {
+      return registeredUsers.find(
+        (user) => user.email === email && user.password === password
+      );
+    }
+
+    $("#signup-form").on("submit", function (e) {
+      e.preventDefault();
+
+      if (checkUserExit(registeredUsers)) {
+        alert("User already exist");
+        return;
+      }
+
+      // Validate Password and success load to login page
+      if (
+        $("#signup-form-password").val() !==
+        $("#signup-form-confirm-password").val()
+      ) {
+        alert("Passwords do not match");
+        return;
+      } else {
+        let newUser = {
+          userID: generateUID(),
+          avatar: userAvatar,
+          userName: $("#signup-form-username").val(),
+          email: $("#signup-form-email").val(),
+          password: $("#signup-form-password").val(),
+        };
+
+        // Add the new user to the registeredUsers array
+        registeredUsers.push(newUser);
+        console.log(registeredUsers);
+
+        // Update local storage registered users
+        saveLocalStorage("users", registeredUsers);
+
+        // clear the data
+        $("#signup-form").trigger("reset");
+
+        alert("User created successfully!");
+
+        // Hide the sign up form
+        signUpFormModal.hide();
+
+        // Show the login form
+        loginFormModal.show();
+
+        // $("#login-form-modal").modal("show");
+      }
+      console.log("SignUP Form Working");
+    });
+
+    // Submit Login Form Modal Data
+    $("#login-form").on("submit", function (e) {
+      e.preventDefault();
+      console.log("Login Form Working");
+
+      // Get the form data
+      let email = $("#login-form-email").val();
+      let password = $("#login-form-password").val();
+
+      // clear the data
+      $("#login-form").trigger("reset");
+
+      // Authenticate the user
+      if (!authenticateUser(registeredUsers, email, password)) {
+        alert("Invalid Credentials!");
+        return;
+      } else {
+        // Find the user
+        let loginUser = registeredUsers.find((user) => user.email === email);
+
+        // Update the login status
+
+        loginState.isLogin = true;
+        loginState.loggedUserID = loginUser.userID;
+
+        // Hide the login form
+        loginFormModal.hide();
+
+        // Clear the previous login signup btn
+        $("#navbar-link-container").empty();
+
+        // update logged user avatar
+        userAvatar = loginUser.avatar;
+        // Show the page navbar with login state
+        checkLoginStatus();
+
+        // Update local storage login state
+        saveLocalStorage("loginState", loginState);
+      }
+      console.log(email, password);
+    });
+
     // Fetch Articles from the json file
     loadedArticles = await fetchData("assets/data/articles.json");
     // console.log(loadedArticles);
@@ -43,6 +156,85 @@ async function fetchAndRender() {
     console.log(error);
   }
 }
+
+function checkLoginStatus() {
+  // TODO: Check the logout dropdown
+  let navbarLinkContainer = $("#navbar-link-container");
+  navbarLinkContainer.empty();
+  if (!loginState.isLogin) {
+    let navbarLink = $("<li>").addClass("nav-item");
+    let navbarLinkLogin = $("<a>")
+      .addClass("btn btn-outline-secondary me-2 py-2 rounded-pill")
+      .attr("data-bs-toggle", "modal")
+      .attr("data-bs-target", "#login-form-modal")
+      .text("Login");
+
+    let navbarLinkSignUp = $("<a>")
+      .addClass("btn btn-dark py-2 rounded-pill")
+      .attr("data-bs-toggle", "modal")
+      .attr("data-bs-target", "#signup-form-modal")
+      .text("Sign Up");
+
+    // Add User Avatar icon in Sign Up form
+    showAvatarIcons($(".avatar-container"));
+
+    navbarLinkContainer.empty();
+    navbarLink.append(navbarLinkLogin, navbarLinkSignUp);
+    navbarLinkContainer.append(navbarLink);
+  } else {
+    let addPostBtn = $("<li>")
+      .addClass("nav-item")
+      .html(
+        ` <button class="btn btn-dark">
+                    <i class="bi bi-plus-lg me-2"></i>New post
+                  </button>`
+      );
+    navbarLinkContainer.append(addPostBtn);
+
+    let navbarProfilePage = $("<li>").addClass("nav-item").html(`
+        <a class="nav-link" aria-current="page" href="#">Profile</a>
+      `);
+    navbarLinkContainer.append(navbarProfilePage);
+
+    // TODO: Switch Account need to add functionality
+    let navbarSwitchAccount = $("<li>").addClass("nav-item").html(`
+        <a class="nav-link" aria-current="page" href="#">Switch Account</a>
+      `);
+    navbarLinkContainer.append(navbarSwitchAccount);
+
+    // TODO: Settings need to add functionality
+    let navbarSetting = $("<li>").addClass("nav-item dropdown-center").html(`
+        <img
+                width="70"
+                class="rounded rounded-circle nav-link dropdown-toggle"
+                href="#"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                src="${userAvatar}"
+              />
+              
+              <ul class="dropdown-menu">
+                <li><a id="logout-btn" class="dropdown-item" href="#">Logout</a></li>
+              </ul>
+      `);
+
+    navbarLinkContainer.append(navbarSetting);
+    // Add Logout to exit the user
+    $("#logout-btn").on("click", () => {
+      console.log("Logout working");
+
+      // TODO: Fix this
+      loginState = {
+        isLogin: false,
+        loggedUserID: null,
+      };
+      location.reload(true);
+
+      saveLocalStorage("loginState", loginState);
+    });
+  }
+}
+
 // Render All Articles Landing Page and Cards
 function renderArticles(articles) {
   // Need last page for landing page
@@ -250,6 +442,99 @@ function addLoadMoreBtn(articles, start, end) {
     });
     $("#load-more-btn-container").append(loadMoreBtn);
   }
+}
+
+// Show Avatar Icons
+function showAvatarIcons(avatarContainer) {
+  let avatarChar = [
+    "Felix",
+    "Aneka",
+    "Liliana",
+    "Eden",
+    "Mackenzie",
+    "Chase",
+    "Aidan",
+    "George",
+    "Christian",
+    "Riley",
+    "Mason",
+  ];
+
+  // Show avatar char with for loop
+  avatarChar.forEach((char) => {
+    let avatarAPI = `https://api.dicebear.com/9.x/notionists/svg?scale=100&size=64&backgroundColor=b6e3f4,c0aede,d1d4f9&seed=${char}`;
+    let avatarImg = $(`<img src="${avatarAPI}" alt="${char}">`)
+      .addClass("rounded-circle border-danger border-3 mb-3")
+      .attr("width", "50")
+      .attr("data-char", char)
+      .on("click", function () {
+        userAvatar = $(this).attr("src");
+
+        // Remove the border from other avatars
+        avatarContainer.find("img").removeClass("border");
+        $(this).addClass("border");
+      });
+    avatarContainer.append(avatarImg);
+  });
+}
+
+// Generate UUID for user
+// ========================
+function generateUID() {
+  return Date.now() + Math.random().toString(36).substr(2, 9); // Generate a unique ID
+}
+
+// Check sign up user for exit or not
+// =================================
+function checkUserExit(registeredUsers) {
+  return registeredUsers.find(
+    (user) => user.email === $("#signup-form-email").val()
+  );
+}
+
+function loadLocalStorage() {
+  // Load articles from local storage
+  loadedArticles = JSON.parse(localStorage.getItem("articles"));
+
+  // Load registered users from local storage
+  let localRegisteredUsers = JSON.parse(localStorage.getItem("users"));
+  console.log(localRegisteredUsers);
+
+  if (localRegisteredUsers) {
+    registeredUsers.concat(localRegisteredUsers);
+    console.log(registeredUsers);
+  }
+
+  // Load login state from local storage
+  let localLoginState = JSON.parse(localStorage.getItem("loginState"));
+  if (localLoginState) {
+    loginState = localLoginState;
+    console.log(loginState);
+
+    // load avatar
+    let avatarId = loginState.loggedUserID;
+    console.log(avatarId);
+
+    let loggedUser = localRegisteredUsers.find(
+      (user) => user.userID === avatarId
+    );
+    console.log(loggedUser);
+
+    if (loggedUser) {
+      userAvatar = loggedUser.avatar;
+    }
+  }
+}
+
+function saveLocalStorage(KEY, VALUE) {
+  // Save articles to local storage
+  localStorage.setItem(`${KEY}`, JSON.stringify(VALUE));
+
+  // Save login state to local storage
+  // localStorage.setItem("loginState", JSON.stringify(loginState));
+
+  // Save registered users to local storage
+  // localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
 }
 
 fetchAndRender();

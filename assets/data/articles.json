@@ -1,0 +1,102 @@
+[
+  {
+    "userID": "001",
+    "postID": "001",
+    "publishedDate": "1, Jan, 2024",
+    "title": "History of Linux",
+    "author": "Zin KO",
+    "imgUrl": "https://studysection.com/blog/wp-content/uploads/2019/10/linux-2025130_960_720.png",
+    "contents": "Linux is an open-source operating system first released in 1991 by Linus Torvalds. It began as a personal project to create a free operating system that mimicked the functionality of UNIX. Since then, Linux has grown into a robust platform that powers servers, mobile devices, and desktop environments globally. The key aspect that sets Linux apart from proprietary systems is its open-source nature, which allows developers worldwide to contribute, modify, and distribute the OS freely. It has become the foundation for many platforms, including Android, and is widely used in enterprise environments due to its stability and flexibility.",
+    "category": "Technology"
+  },
+  {
+    "userID": "002",
+    "postID": "002",
+    "publishedDate": "5, Jan, 2024",
+    "title": "Introduction to JavaScript",
+    "author": "Javana",
+    "imgUrl": "https://media.licdn.com/dms/image/D4D12AQEVeO32hO7sKA/article-cover_image-shrink_720_1280/0/1681748767021?e=2147483647&v=beta&t=_PzcjpBUdeI9DiXN_Jv-S4eJsNlITdi-F3aPPSin3Rk",
+    "contents": "JavaScript is a versatile, high-level programming language primarily used for creating interactive web applications. It was first introduced in 1995 and quickly became one of the core technologies of the World Wide Web alongside HTML and CSS. JavaScript allows developers to make web pages dynamic by manipulating HTML and CSS, responding to user input, and interacting with external APIs. With the rise of Node.js, JavaScript has evolved beyond the browser, enabling full-stack development, where both client-side and server-side code can be written using the same language.",
+    "category": "Technology"
+  },
+  {
+    "userID": "001",
+    "postID": "003",
+    "publishedDate": "8, Jan, 2024",
+    "title": "Understanding Git and GitHub",
+    "author": "Zin KO",
+    "imgUrl": "https://www.javedali.net/post/intro-git-github/featured.jpg",
+    "contents": "Git is a distributed version control system that helps developers track changes in code during software development. It allows multiple developers to work on a project simultaneously without conflicts, enabling a smooth collaboration process. GitHub, on the other hand, is a web-based platform built around Git. It provides additional features like code hosting, issue tracking, and collaborative tools, making it easier for developers to share and contribute to projects. Together, Git and GitHub have revolutionized the software development process by introducing better workflows and version control.",
+    "category": "Technology"
+  },
+  {
+    "userID": "003",
+    "postID": "004",
+    "publishedDate": "12, Jan, 2024",
+    "title": "The Power of APIs in Web Development",
+    "author": "Pannananda",
+    "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsI7wlSvoIhgfFnpk2akuIWuzBI2y0vNf_1A&s",
+    "contents": "APIs, or Application Programming Interfaces, are crucial in web development because they allow different applications to communicate and share data with each other. APIs enable developers to integrate third-party services such as social media, payment gateways, and cloud storage into their websites. RESTful APIs have become the standard, providing simple ways to send and retrieve data using HTTP methods like GET, POST, PUT, and DELETE. With the rapid growth of web services, APIs have become indispensable for building scalable, flexible, and feature-rich web applications.",
+    "category": "Technology"
+  },
+  {
+    "userID": "002",
+    "postID": "005",
+    "publishedDate": "15, Jan, 2024",
+    "title": "Why You Should Learn CSS Grid",
+    "author": "Tikkhanyana",
+    "imgUrl": "https://www.freecodecamp.org/news/content/images/2021/01/GridThumb.jpg",
+    "contents": "CSS Grid is a powerful layout system that allows web developers to create complex, responsive grid-based layouts with ease. It was introduced in CSS3 and provides more control over the placement of items within a grid, offering flexibility that older layout systems like Flexbox couldn't achieve. CSS Grid is particularly useful for designing web pages that need to be both responsive and visually appealing across multiple screen sizes. If you're working on modern web development projects, learning CSS Grid will give you the tools to create better, more dynamic user interfaces.",
+    "category": "Technology"
+  },
+  {
+    "userID": "004",
+    "postID": "006",
+    "publishedDate": "18, Jan, 2024",
+    "title": "Best Practices for Responsive Web Design",
+    "author": "Nyein Shwe Yee",
+    "imgUrl": "https://public-images.interaction-design.org/literature/articles/materials/flTR2AEh0Xm8QMKevDdSR4x08XS9oDCs2FrMxpjj.jpg",
+    "contents": "Responsive web design ensures that web applications work well on all devices, from mobile phones to desktops. By using techniques like media queries, flexible grids, and responsive images, developers can create layouts that adapt to different screen sizes. One of the key principles of responsive design is 'mobile-first' development, which emphasizes designing for smaller screens before scaling up. This approach ensures that content is accessible and functional on mobile devices, which are often the primary means of accessing the web for many users today.",
+    "category": "Technology"
+  },
+  {
+    "userID": "001",
+    "postID": "007",
+    "publishedDate": "20, Jan, 2024",
+    "title": "The Rise of Artificial Intelligence",
+    "author": "Zin KO",
+    "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6tI4d3vzjsA2Pz8cdccBMWHjmJ9VJ0sp3HQ&s",
+    "contents": "Artificial Intelligence (AI) has evolved rapidly in recent years, transitioning from a theoretical concept to a practical tool used in various industries. From healthcare to finance, AI is transforming how businesses operate by enabling automation, improving decision-making, and driving innovation. Machine learning, a subset of AI, has become particularly prominent, allowing systems to learn from data and improve over time. As AI technology continues to develop, it promises to create new opportunities while also raising important ethical questions around privacy, bias, and the future of work.",
+    "category": "Technology"
+  },
+  {
+    "userID": "005",
+    "postID": "008",
+    "publishedDate": "22, Jan, 2024",
+    "title": "Exploring the Internet of Things (IoT)",
+    "author": "Tikkhanyana",
+    "imgUrl": "https://businesstech.bus.umich.edu/wp-content/uploads/2023/01/iot2.png",
+    "contents": "The Internet of Things (IoT) refers to the network of physical devices, vehicles, and appliances that are connected to the internet, collecting and exchanging data. IoT has revolutionized industries by providing real-time monitoring, automation, and predictive maintenance capabilities. From smart homes to connected cars, IoT is making everyday objects 'smarter' and more interactive. However, with the growing number of connected devices, IoT also brings challenges related to security, privacy, and data management. As IoT continues to expand, it will play a critical role in shaping the future of technology.",
+    "category": "Technology"
+  },
+  {
+    "userID": "002",
+    "postID": "009",
+    "publishedDate": "25, Jan, 2024",
+    "title": "Version Control Systems: A Brief Overview",
+    "author": "Pannananda",
+    "imgUrl": "https://www.thatcompany.com/wp-content/uploads/2020/03/art5.jpg",
+    "contents": "Version control systems (VCS) are essential tools for developers, allowing them to track and manage changes to their codebase. VCS enable teams to collaborate on projects more efficiently by providing a history of changes, merging different versions of code, and resolving conflicts. The most popular VCS today is Git, which is distributed and allows developers to work on different branches of code without interfering with the main project. Understanding version control is critical for any developer, as it ensures a smooth and organized workflow, especially in collaborative environments.",
+    "category": "Technology"
+  },
+  {
+    "userID": "006",
+    "postID": "010",
+    "publishedDate": "28, Jan, 2024",
+    "title": "Web Development Trends in 2024",
+    "author": "Javana",
+    "imgUrl": "https://triare.net/wp-content/uploads/2024/01/site-2.png",
+    "contents": "As technology evolves, so do the trends in web development. In 2024, we can expect to see a continued emphasis on performance, user experience, and accessibility. Tools like Progressive Web Apps (PWAs) are gaining popularity due to their ability to deliver fast, reliable experiences on both desktop and mobile devices. Serverless architecture is also making waves, simplifying the deployment process for developers. Additionally, AI-driven development is becoming more common, enabling personalized user experiences. Staying up to date with these trends is crucial for web developers looking to stay competitive.",
+    "category": "Health"
+  }
+]

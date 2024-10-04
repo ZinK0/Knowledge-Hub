@@ -85,7 +85,7 @@ function renderArticleCard(articles) {
 
   // Clear leftover cards
   if (currentPage == 1) {
-    cardTopLevelContainer.innerHTML = "";
+    cardTopLevelContainer.empty();
   }
 
   // Loop through articles
@@ -179,6 +179,41 @@ function renderCategories(articles) {
     li.appendChild(categoryLink);
     $("#categories-link").append(li);
   });
+
+  // Add event listener to all category links
+  $(".nav-tabs .nav-link").on("click", function (e) {
+    e.preventDefault();
+
+    // Reset the current page for selected category
+    currentPage = 1;
+
+    const selectedCategory = $(this).text();
+
+    // Filter selected category post
+    const filteredArticles = loadedArticles.filter((article) => {
+      return (
+        article.category === selectedCategory ||
+        selectedCategory === "All Posts"
+      );
+    });
+
+    // Set Default Active Category for All Post
+    addActiveCategory(selectedCategory);
+
+    // Render 6 Cards only per page
+    let start = (currentPage - 1) * articlesPerPage;
+    let end = Math.min(start + articlesPerPage, filteredArticles.length);
+
+    // Calculate the total pages for add or not about read more btn
+    // let totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
+    renderArticleCard(filteredArticles, start, end);
+  });
+}
+
+// Add Active Category for Categories Link
+function addActiveCategory(category) {
+  $("#categories-link .nav-link").removeClass("active");
+  $(`#categories-link .nav-link:contains(${category})`).addClass("active");
 }
 
 fetchAndRender();

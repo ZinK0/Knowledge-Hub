@@ -36,6 +36,9 @@ async function fetchAndRender() {
 
     // Render Categories
     renderCategories(loadedArticles);
+
+    // Set default active category for all posts
+    $("#categories-link .nav-link:first").addClass("active");
   } catch (error) {
     console.log(error);
   }

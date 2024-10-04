@@ -11,6 +11,7 @@ body {
 }
 
 /* NavBar Section Start */
+
 /* Search Box  */
 .search-box {
   display: flex;
@@ -28,6 +29,20 @@ body {
 .search-box input:focus {
   outline: none;
   /* border: none; */
+}
+
+/* NavBar Section End Here  */
+
+/* Landing Page Section Start  */
+
+.article p {
+  /* max-height: 3.2em; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-bottom: 10px;
 }
 
 /* Hide the Nav Link when for mobile  */

@@ -31,6 +31,9 @@ async function fetchAndRender() {
 
     // Render Articles
     renderArticles(loadedArticles);
+
+    // Render Categories
+    renderCategories(loadedArticles);
   } catch (error) {
     console.log(error);
   }
@@ -44,6 +47,7 @@ function renderArticles(articles) {
   renderLandingPage(lastArticle);
 }
 
+// Landing Page rendering function
 function renderLandingPage(lastPost) {
   let landingPageTitle = $("#landing-page-title");
   let landingPageDescription = $("#landing-page-description");
@@ -64,6 +68,31 @@ function renderLandingPage(lastPost) {
       $(".modal-published-date").text(lastPost.publishedDate);
       $(".modal-author").text(lastPost.author);
     });
+}
+
+// Categories will show from all the articles loaded
+function renderCategories(articles) {
+  // Get all categories
+  let allCategories = articles.map((article) => article.category);
+
+  // Get unique categories but added all post ( all categories ) in the first
+  let uniqueCategories = ["All Posts", ...new Set(allCategories)];
+
+  // Loop through unique categories
+  uniqueCategories.forEach((category) => {
+    // Create li
+    let li = document.createElement("li");
+    let categoryLink = document.createElement("a");
+
+    categoryLink.textContent = category;
+    categoryLink.classList.add(
+      "nav-link",
+      "text-black",
+      "text-decoration-none"
+    );
+    li.appendChild(categoryLink);
+    $("#categories-link").append(li);
+  });
 }
 
 fetchAndRender();

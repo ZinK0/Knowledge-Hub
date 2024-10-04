@@ -157,6 +157,12 @@ function renderArticleCard(articles) {
 
     cardTopLevelContainer.append(cardGrid);
   }
+
+  // Remove Old Load More Button
+  $("#load-more-btn-container").empty();
+
+  // Check the total pages and add Load More Button if needed
+  addLoadMoreBtn(articles, start, end);
 }
 
 // Categories will show from all the articles loaded
@@ -217,6 +223,33 @@ function renderCategories(articles) {
 function addActiveCategory(category) {
   $("#categories-link .nav-link").removeClass("active");
   $(`#categories-link .nav-link:contains(${category})`).addClass("active");
+}
+
+// Function about calculation the total pages for add or not about load more btn
+function addLoadMoreBtn(articles, start, end) {
+  let totalPages = Math.ceil(articles.length / articlesPerPage);
+  if (currentPage < totalPages) {
+    console.log("Load more btn working!");
+
+    let loadMoreBtn = $("<button>").addClass(
+      "btn btn-lg btn-dark mx-auto mt-5 shadow-sm rounded-pill"
+    );
+    loadMoreBtn.html(`<i class="bi bi-arrow-down p-2 "> Load More</i>`);
+    loadMoreBtn.on("click", () => {
+      currentPage++;
+      renderArticleCard(
+        articles,
+        (start = 0),
+        (end = articlesPerPage * currentPage)
+      );
+      // renderCards(
+      //   articles,
+      //   (start = (currentPage - 1) * articlesPerPage),
+      //   (end = Math.min(start + articlesPerPage, articles.length))
+      // );
+    });
+    $("#load-more-btn-container").append(loadMoreBtn);
+  }
 }
 
 fetchAndRender();

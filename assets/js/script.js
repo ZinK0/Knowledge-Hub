@@ -120,8 +120,35 @@ function renderArticleCard(articles) {
       .text(article.contents)
       .addClass("card-text text-black-70");
 
+    //   Add Read More button
+    let readMoreBtn = $("<a>")
+      .addClass("text-black ")
+      .attr("href", "#") // Set the href attribute
+      .attr("class", "readmore-btn") // Set the class attribute
+      .attr("data-bs-toggle", "modal") // Bootstrap modal toggle
+      .attr("data-bs-target", "#article-modal") // Target the modal with this ID
+      .attr("data-bs-postid", article.postID) // Dynamically add the post ID from the article object
+      .html(`Read More <i class="bi bi-arrow-up-right"></i>`) // Add text and icon inside the anchor tag
+      .on("click", function (e) {
+        e.preventDefault();
+        console.log("clicked");
+
+        // Get the post with the data-bs-postid attribute
+        let postId = $(this).data("bs-postid");
+        let article = articles.find((a) => a.postID === postId);
+
+        // Add the data to the modal
+        $(".modal-article-title").text(article.title);
+        $(".modal-text").text(article.contents);
+        $(".modal-author").text(article.author);
+        $(".modal-published-date").text(article.publishedDate);
+        $(".modal-img").attr("src", article.imgUrl);
+        console.log(article.title);
+        console.log(postId);
+      });
+
     // Append elements to card
-    cardBody.append(author, title, description);
+    cardBody.append(author, title, description, readMoreBtn);
     cardContainer.append(img, cardBody);
     cardGrid.append(cardContainer);
 

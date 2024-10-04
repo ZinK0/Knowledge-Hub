@@ -71,6 +71,25 @@ body {
   margin-bottom: 10px;
 }
 
+/* Sign UP avatar section 
+ */
+.avatar-container {
+  /* display: flex; */
+  overflow-x: auto; /* Enables horizontal scrolling */
+  white-space: nowrap; /* Prevents line wrapping */
+  scrollbar-width: none; /* Firefox - hides scrollbar */
+  -ms-overflow-style: none; /* Internet Explorer - hides scrollbar */
+}
+
+.avatar-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and other WebKit browsers */
+}
+
+.avatar-container img {
+  display: inline-block;
+  margin-right: 10px; /* Adjust spacing between avatars */
+}
+
 /* Hide the Nav Link when for mobile  */
 @media (max-width: 1024px) {
   .offcanvas-collapse {

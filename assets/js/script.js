@@ -27,7 +27,7 @@ async function fetchAndRender() {
   try {
     // Fetch Articles from the json file
     loadedArticles = await fetchData("assets/data/articles.json");
-    console.log(loadedArticles);
+    // console.log(loadedArticles);
 
     // Render Articles
     renderArticles(loadedArticles);

@@ -52,6 +52,18 @@ function renderLandingPage(lastPost) {
   landingPageTitle.text(lastPost.title);
   landingPageDescription.text(lastPost.contents);
   landingPageImg.attr("src", lastPost.imgUrl);
+  $(".readmore-btn")
+    .attr("data-bs-postid", lastPost.postID)
+    .on("click", function (e) {
+      e.preventDefault();
+
+      // Add all articles to modal
+      $(".modal-article-title").text(lastPost.title);
+      $(".modal-text").text(lastPost.contents);
+      $(".modal-img").attr("src", lastPost.imgUrl);
+      $(".modal-published-date").text(lastPost.publishedDate);
+      $(".modal-author").text(lastPost.author);
+    });
 }
 
 fetchAndRender();

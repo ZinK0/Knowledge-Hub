@@ -36,17 +36,28 @@ body {
     position: fixed;
     top: 56px; /* Height of navbar */
     bottom: 0;
-    left: 100%;
+    left: 180%;
     width: 100%;
     padding-right: 1rem;
     padding-left: 1rem;
+    border-radius: 20px;
+    padding: 20px 15px;
     overflow-y: auto;
     visibility: hidden;
-    background-color: #343a40;
+    background-color: #c0c4c7;
     transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  }
+  .search-box {
+    display: none;
   }
   .offcanvas-collapse.open {
     visibility: visible;
     transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .offcanvas-collapse {
+    left: 170%;
   }
 }

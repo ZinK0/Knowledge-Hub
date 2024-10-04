@@ -57,6 +57,10 @@ body {
   height: 50%;
 }
 
+.card-title {
+    overflow: hidden;
+}
+
 /* Card Text  */
 .card-text {
   overflow: hidden;
@@ -101,4 +105,5 @@ body {
   .offcanvas-collapse {
     left: 170%;
   }
+}
 }

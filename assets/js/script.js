@@ -1,4 +1,6 @@
 let loadedArticles = [];
+const articlesPerPage = 6;
+let currentPage = 1;
 
 // Navbar collapse function
 (() => {
@@ -45,6 +47,9 @@ function renderArticles(articles) {
 
   // Use Landing Page Function
   renderLandingPage(lastArticle);
+
+  // Render Article Cards
+  renderArticleCard(articles);
 }
 
 // Landing Page rendering function
@@ -68,6 +73,60 @@ function renderLandingPage(lastPost) {
       $(".modal-published-date").text(lastPost.publishedDate);
       $(".modal-author").text(lastPost.author);
     });
+}
+
+// Article Post Card function
+function renderArticleCard(articles) {
+  // Count to show limit 6 posts per page
+  let start = (currentPage - 1) * articlesPerPage;
+  let end = Math.min(start + articlesPerPage, articles.length);
+
+  let cardTopLevelContainer = $("#card-group");
+
+  // Clear leftover cards
+  if (currentPage == 1) {
+    cardTopLevelContainer.innerHTML = "";
+  }
+
+  // Loop through articles
+  for (let i = start; i < end; i++) {
+    let article = articles[i];
+    console.log(article);
+
+    // Create cards
+    let cardGrid = $("<div>").addClass("col");
+    let cardContainer = $("<div>").addClass("card shadow-sm p-2");
+    let cardBody = $("<div>").addClass("card-body");
+
+    // Create Image
+    let img = $("<img>")
+      .attr("src", article.imgUrl)
+      .addClass("rounded object-fit-cover");
+    console.log(img);
+
+    // Create Title
+    let title = $("<h5>")
+      .text(article.title)
+      .addClass("card-title text-nowrap");
+    // let author = $("<p>")
+    //   .text(`${article.author}`)
+    //   .addClass("text-primary author");
+    let author = $("<p>")
+      .addClass("text-primary author")
+      .html(`${article.author} | <span>${article.publishedDate}</span>`);
+
+    // Create Description
+    let description = $("<p>")
+      .text(article.contents)
+      .addClass("card-text text-black-70");
+
+    // Append elements to card
+    cardBody.append(author, title, description);
+    cardContainer.append(img, cardBody);
+    cardGrid.append(cardContainer);
+
+    cardTopLevelContainer.append(cardGrid);
+  }
 }
 
 // Categories will show from all the articles loaded

@@ -3,8 +3,8 @@ let userID = loginState.loggedUserID;
 let articles = JSON.parse(localStorage.getItem("articles"));
 
 let filteredArticles = articles.filter((article) => article.userID == userID);
-let firstARTICLE = filteredArticles[2];
-console.log(firstARTICLE.imgUrl);
+// let firstARTICLE = filteredArticles[2];
+// console.log(firstARTICLE.imgUrl);
 
 console.log(articles);
 console.log(filteredArticles);
@@ -63,3 +63,25 @@ renderArticleCard(filteredArticles);
 
 // Create Table Row
 console.log("Profile JS Loaded");
+
+function saveLocalStorage(KEY, VALUE) {
+  // Save articles to local storage
+  localStorage.setItem(`${KEY}`, JSON.stringify(VALUE));
+}
+
+// Logout User and redirect to main page
+$("#logout-btn").on("click", () => {
+  console.log("Logout working");
+
+  // Update loginState to indicate the user is logged out
+  loginState = {
+    isLogin: false,
+    loggedUserID: null,
+  };
+
+  // Save the updated loginState to localStorage
+  saveLocalStorage("loginState", loginState);
+
+  // Redirect to the index page after logout
+  window.location.href = "index.html"; // Change 'index.html' to the actual path of your index page
+});

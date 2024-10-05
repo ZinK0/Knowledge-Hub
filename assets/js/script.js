@@ -558,12 +558,6 @@ function loadLocalStorage(registeredUsers) {
 function saveLocalStorage(KEY, VALUE) {
   // Save articles to local storage
   localStorage.setItem(`${KEY}`, JSON.stringify(VALUE));
-
-  // Save login state to local storage
-  // localStorage.setItem("loginState", JSON.stringify(loginState));
-
-  // Save registered users to local storage
-  // localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
 }
 
 fetchAndRender();

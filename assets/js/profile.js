@@ -1,16 +1,11 @@
 let loginUserAvatar;
 let loginState = JSON.parse(localStorage.getItem("loginState"));
-console.log(loginState);
 let users = JSON.parse(localStorage.getItem("users"));
-console.log(users);
 
 if (loginState) {
   let avatarId = loginState.loggedUserID;
-  console.log(avatarId);
 
   let loggedUser = users.find((user) => user.userID === avatarId);
-  console.log(loggedUser);
-  // loginUserAvatar = loggedUser.avatar;
   $("#profile-img").attr("src", loggedUser.avatar);
   $("#profile-name").text(loggedUser.userName);
 
@@ -19,14 +14,6 @@ if (loginState) {
 }
 
 // Restore Active Tab
-const activeTab = localStorage.getItem("activeTab");
-// if (activeTab === "posts") {
-//   $("#postsLink").click(() => {
-//     alert("hi");
-//   });
-// } else {
-//   $("#updateProfileLink").click((event) => showSection(event, "profile"));
-// }
 $("#postsLink").on("click", (event) => showSection(event, "posts"));
 
 $("#updateProfileLink").on("click", (event) =>
@@ -63,8 +50,6 @@ let localArticles = JSON.parse(localStorage.getItem("articles"));
 let filteredArticles = localArticles.filter(
   (article) => article.userID == userID
 );
-// let firstARTICLE = filteredArticles[2];
-// console.log(firstARTICLE.imgUrl);
 
 console.log();
 console.log(filteredArticles);
@@ -103,7 +88,6 @@ function renderArticleCard(articles) {
         filteredArticles = filteredArticles.filter(
           (filteredArticle) => filteredArticle.postID !== article.postID
         );
-        // console.log(deletedArticles);
 
         // Update the local articles for delete
         localArticles = localArticles.filter(
@@ -113,10 +97,6 @@ function renderArticleCard(articles) {
 
         // Clear the table
         $(".table-group-divider").empty();
-        // filteredArticles = deletedArticles.filter(
-        //   (article) => article.userID == userID
-        // );
-        console.log(filteredArticles);
 
         renderArticleCard(filteredArticles);
       });
@@ -143,9 +123,6 @@ function renderArticleCard(articles) {
 
 renderArticleCard(filteredArticles);
 
-// Create Table Row
-console.log("Profile JS Loaded");
-
 function saveLocalStorage(KEY, VALUE) {
   // Save articles to local storage
   localStorage.setItem(`${KEY}`, JSON.stringify(VALUE));
@@ -166,12 +143,4 @@ $("#logout-btn").on("click", () => {
 
   // Redirect to the index page after logout
   window.location.href = "index.html"; // Change 'index.html' to the actual path of your index page
-});
-
-$("#updateProfileLink").on("click", () => {
-  localStorage.setItem("activeTab", "profile");
-});
-
-$("#postsLink").on("click", () => {
-  localStorage.setItem("activeTab", "posts");
 });

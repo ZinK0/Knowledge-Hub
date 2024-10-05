@@ -83,6 +83,11 @@
       <div class="row w-100">
         <!-- Left Navigation Section -->
         <div class="col-lg-3 col-md-4 bg-light sidebar">
+          <a
+            href="index.html"
+            class="mt-3 ms-3 btn btn-outline-primary text-decoration-none"
+            ><i class="bi bi-arrow-left"></i> Back</a
+          >
           <div class="text-center py-4 d-flex align-items-center">
             <img
               id="profile-img"
@@ -187,6 +192,73 @@
                 <!-- Posts will be injected by JS -->
               </tbody>
             </table>
+          </div>
+
+          <!-- Post Modal -->
+          <div
+            class="modal fade"
+            id="post-modal"
+            tabindex="-1"
+            aria-hidden="true"
+            aria-labelledby="post-modal"
+          >
+            <div
+              class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg"
+            >
+              <div class="modal-content">
+                <div class="modal-header border-0">
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    data-bs-target="#login-form-modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <form id="post-form" class="px-5 py-4" action="">
+                  <!-- <h3 class="text-center fw-bold modal-title h3 mb-3">Login</h3>
+                    <p class="fst-italic text-center">
+                      Welcome back. You've been missed.
+                    </p> -->
+
+                  <div class="form-floating mb-3">
+                    <input
+                      id="post-title"
+                      class="form-control rounded-3"
+                      type="text"
+                      placeholder="Post Title"
+                    />
+                    <label for="post-title"> Post Title </label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      id="post-img"
+                      class="form-control rounded-3"
+                      type="file"
+                      placeholder="Post Image"
+                    />
+                    <label for="post-img"> Post Image </label>
+                  </div>
+
+                  <div class="form-floating mb-3">
+                    <textarea
+                      class="form-control"
+                      placeholder="Your Articles"
+                      id="post-content"
+                      style="height: 400px"
+                    ></textarea>
+                    <label for="post-content">Your Articles</label>
+                  </div>
+                  <button
+                    id="post-form-btn"
+                    type="submit"
+                    class="mt-4 btn btn-primary w-100 rounded-pill"
+                  >
+                    Update
+                  </button>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>

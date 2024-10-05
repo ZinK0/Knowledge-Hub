@@ -208,7 +208,7 @@ function checkLoginStatus() {
 
     // TODO: Switch Account need to add functionality
     let navbarSwitchAccount = $("<li>").addClass("nav-item").html(`
-        <a class="nav-link" aria-current="page" href="#">Switch Account</a>
+        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#login-form-modal"  aria-current="page" href="#">Switch Account</a>
       `);
     navbarLinkContainer.append(navbarSwitchAccount);
 

@@ -654,7 +654,7 @@ async function addNewArticle(e) {
       contents: $("#add-post-content").val(),
       author: findAuthor.userName,
       publishedDate: generateDate(),
-      category: "All Posts",
+      category: null,
     };
 
     console.log(newArticle); // Log or save the new article to localStorage

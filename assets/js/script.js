@@ -151,6 +151,9 @@ async function fetchAndRender() {
     loadedArticles = await fetchData("assets/data/articles.json");
     // console.log(loadedArticles);
 
+    // Save articles to local storage
+    saveLocalStorage("articles", loadedArticles);
+
     // Render Articles
     renderArticles(loadedArticles);
 

@@ -1,12 +1,14 @@
 // Filter user's post
 let userID = loginState.loggedUserID;
-let articles = JSON.parse(localStorage.getItem("articles"));
+let localArticles = JSON.parse(localStorage.getItem("articles"));
 
-let filteredArticles = articles.filter((article) => article.userID == userID);
+let filteredArticles = localArticles.filter(
+  (article) => article.userID == userID
+);
 // let firstARTICLE = filteredArticles[2];
 // console.log(firstARTICLE.imgUrl);
 
-console.log(articles);
+console.log();
 console.log(filteredArticles);
 
 function renderArticleCard(articles) {
@@ -40,12 +42,16 @@ function renderArticleCard(articles) {
       .text("Delete")
       .on("click", () => {
         console.log("Delete working");
+        console.log(article);
+        console.log(localArticles);
 
         // Delete article from local storage
-        let filteredArticles = articles.filter(
-          (article) => article.postID !== article.postID
+        let deletedArticles = localArticles.filter(
+          (localArticle) => localArticle.postID !== article.postID
         );
-        saveLocalStorage("articles", filteredArticles);
+        console.log(deletedArticles);
+
+        saveLocalStorage("articles", deletedArticles);
         location.reload();
       });
 

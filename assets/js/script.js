@@ -69,6 +69,7 @@ async function fetchAndRender() {
       } else {
         let newUser = {
           userID: generateUID(),
+          createdDate: generateDate(),
           avatar: userAvatar,
           userName: $("#signup-form-username").val(),
           email: $("#signup-form-email").val(),
@@ -482,6 +483,15 @@ function showAvatarIcons(avatarContainer) {
 // ========================
 function generateUID() {
   return Date.now() + Math.random().toString(36).substr(2, 9); // Generate a unique ID
+}
+
+// Generate Date for new user creation
+function generateDate() {
+  let date = new Date();
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+  return `${day}/${month}/${year}`;
 }
 
 // Check sign up user for exit or not

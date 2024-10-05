@@ -199,7 +199,7 @@ function checkLoginStatus() {
     navbarLinkContainer.append(addPostBtn);
 
     let navbarProfilePage = $("<li>").addClass("nav-item").html(`
-        <a class="nav-link" aria-current="page" href="#">Profile</a>
+        <a class="nav-link" aria-current="page" href="profile.html">Profile</a>
       `);
     navbarLinkContainer.append(navbarProfilePage);
 

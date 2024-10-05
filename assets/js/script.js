@@ -37,12 +37,17 @@ async function fetchData(url) {
 // Async that fetch the data from json file and display it
 async function fetchAndRender() {
   try {
+    loadLocalStorage();
     // Fetch registered users
-    registeredUsers = await fetchData("assets/data/users.json");
     console.log(registeredUsers);
+
+    // registeredUsers = await fetchData("assets/data/users.json");
+    // console.log(registeredUsers);
+
+    // Fetch Articles from the json file
+    // loadedArticles = await fetchData("assets/data/articles.json");
+    // console.log(loadedArticles);
     // saveLocalStorage("users", registeredUsers);
-    loadLocalStorage(registeredUsers);
-    console.log(registeredUsers);
 
     checkLoginStatus();
 
@@ -147,12 +152,7 @@ async function fetchAndRender() {
       console.log(email, password);
     });
 
-    // Fetch Articles from the json file
-    loadedArticles = await fetchData("assets/data/articles.json");
-    // console.log(loadedArticles);
-
-    // Save articles to local storage
-    saveLocalStorage("articles", loadedArticles);
+    // Load articles from local storage to control the delete update
 
     // Render Articles
     renderArticles(loadedArticles);
@@ -247,6 +247,8 @@ function checkLoginStatus() {
 
 // Render All Articles Landing Page and Cards
 function renderArticles(articles) {
+  console.log(articles);
+
   // Need last page for landing page
   const lastArticle = articles[articles.length - 1];
 
@@ -511,9 +513,30 @@ function checkUserExit(registeredUsers) {
   );
 }
 
-function loadLocalStorage(registeredUsers) {
+async function loadLocalStorage() {
   // Load articles from local storage
-  loadedArticles = JSON.parse(localStorage.getItem("articles"));
+  localArticles = JSON.parse(localStorage.getItem("articles"));
+  console.log(loadedArticles);
+
+  if (localArticles) {
+    // Filter users that are not already in registeredUsers based on userID
+    let newArticles = localArticles.filter((localArticle) => {
+      return !loadedArticles.some(
+        (loadedArticle) => loadedArticle.postID === localArticle.postID
+      );
+    });
+
+    // Add only new unique users to registeredUsers
+    loadedArticles.push(...newArticles);
+    console.log(loadedArticles); // Now registeredUsers will include only unique users
+  } else {
+    // If local storage is empty, load from json file
+    // Fetch Articles from the json file
+    loadedArticles = await fetchData("assets/data/articles.json");
+
+    // Save articles to local storage
+    saveLocalStorage("articles", loadedArticles);
+  }
 
   // Load registered users from local storage
   let localRegisteredUsers = JSON.parse(localStorage.getItem("users"));
@@ -530,6 +553,13 @@ function loadLocalStorage(registeredUsers) {
     // Add only new unique users to registeredUsers
     registeredUsers.push(...newUsers);
     console.log(registeredUsers); // Now registeredUsers will include only unique users
+  } else {
+    // If local storage is empty, load from json file
+    // Fetch Users from the json file
+    registeredUsers = await fetchData("assets/data/users.json");
+
+    // Save users to local storage
+    saveLocalStorage("users", registeredUsers);
   }
 
   // Load login state from local storage

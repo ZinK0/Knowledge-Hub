@@ -160,7 +160,7 @@ $("#post-form").on("submit", (event) => {
 
   let updateTitle = $("#post-title").val();
   let updateContent = $("#post-content").val();
-  function getImgUrl(oriImg) {
+  function getImgUrl(oriImg = "null") {
     let updateImg = document.getElementById("post-img").files;
     if (!updateImg || updateImg.length == 0) {
       return oriImg;

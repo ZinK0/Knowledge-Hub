@@ -195,7 +195,7 @@ function checkLoginStatus() {
     let addPostBtn = $("<li>")
       .addClass("nav-item")
       .html(
-        ` <button class="btn btn-dark">
+        ` <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#add-post-modal"  >
                     <i class="bi bi-plus-lg me-2"></i>New post
                   </button>`
       );
@@ -589,5 +589,89 @@ function saveLocalStorage(KEY, VALUE) {
   // Save articles to local storage
   localStorage.setItem(`${KEY}`, JSON.stringify(VALUE));
 }
+function getNewPostImgUrl(oriImg) {
+  return new Promise((resolve, reject) => {
+    let updateImg = document.getElementById("add-post-img").files;
+
+    if (!updateImg || updateImg.length == 0) {
+      resolve(oriImg); // Return the original image if no new file is selected
+      return;
+    }
+
+    const file = updateImg[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      resolve(reader.result); // Resolve the promise with the image data
+    };
+
+    reader.onerror = (error) => {
+      reject(error); // Reject the promise in case of an error
+    };
+
+    reader.readAsDataURL(file); // Read the file
+  });
+}
+
+// function addNewArticle(e) {
+//   e.preventDefault();
+//   console.log(getNewPostImgUrl());
+//   let findAuthor = registeredUsers.find(
+//     (user) => user.userID === loginState.loggedUserID
+//   );
+//   console.log(findAuthor);
+
+//   let newArticle = {
+//     postID: generateUID(),
+//     title: $("#add-post-title").val(),
+//     imgUrl: getNewPostImgUrl(),
+//     contents: $("#add-post-content").val(),
+//     author: findAuthor.userName,
+//     date: generateDate(),
+//     category: "All Posts",
+//   };
+//   console.log(newArticle);
+//   alert("Article added successfully");
+//   console.log("********");
+//   $("#add-post-modal").hide();
+// }
+
+async function addNewArticle(e) {
+  e.preventDefault();
+
+  let findAuthor = registeredUsers.find(
+    (user) => user.userID === loginState.loggedUserID
+  );
+
+  try {
+    const imgUrl = await getNewPostImgUrl(); // Wait for the image URL to be resolved
+
+    let newArticle = {
+      postID: generateUID(),
+      title: $("#add-post-title").val(),
+      imgUrl: imgUrl, // Use the resolved image URL here
+      contents: $("#add-post-content").val(),
+      author: findAuthor.userName,
+      publishedDate: generateDate(),
+      category: "All Posts",
+    };
+
+    console.log(newArticle); // Log or save the new article to localStorage
+    // Save the article to your data store (e.g., localStorage)
+    saveArticleToLocalStorage(newArticle);
+  } catch (error) {
+    console.error("Error reading the image file: ", error);
+  }
+  $("#add-post-modal").hide();
+}
+
+function saveArticleToLocalStorage(article) {
+  // Assuming you have a way to store articles in localStorage
+  let articles = JSON.parse(localStorage.getItem("articles")) || [];
+  articles.push(article);
+  localStorage.setItem("articles", JSON.stringify(articles));
+}
+
+$("#add-post-form").on("submit", (e) => addNewArticle(e));
 
 fetchAndRender();

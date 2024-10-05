@@ -62,9 +62,9 @@
         padding: 40px;
       }
 
-      .content-section {
-        /* Add any additional styling for content sections */
-      }
+      /* .content-section { */
+      /* Add any additional styling for content sections */
+      /* } */
 
       @media (max-width: 768px) {
         .sidebar {
@@ -94,13 +94,10 @@
           </div>
           <hr />
           <nav class="nav flex-column">
-            <a
-              class="nav-link active"
-              href="#"
-              onclick="showSection(event, 'updateProfile')"
+            <a id="updateProfileLink" class="nav-link active" href="#"
               ><i class="bi bi-person"></i> Update Profile</a
             >
-            <a class="nav-link" href="#" onclick="showSection(event, 'posts')"
+            <a id="postsLink" class="nav-link" href="#"
               ><i class="bi bi-file-earmark-text"></i> Posts</a
             >
           </nav>
@@ -205,50 +202,7 @@
     <!-- <script src="./assets/js/script.js"></script> -->
 
     <script>
-      let loginUserAvatar;
-      let loginState = JSON.parse(localStorage.getItem("loginState"));
-      console.log(loginState);
-      let users = JSON.parse(localStorage.getItem("users"));
-      console.log(users);
-
-      if (loginState) {
-        let avatarId = loginState.loggedUserID;
-        console.log(avatarId);
-
-        let loggedUser = users.find((user) => user.userID === avatarId);
-        console.log(loggedUser);
-        // loginUserAvatar = loggedUser.avatar;
-        $("#profile-img").attr("src", loggedUser.avatar);
-        $("#profile-name").text(loggedUser.userName);
-
-        $("#updateName").val(loggedUser.email);
-        $("#updatePassword").val(loggedUser.password);
-      }
-
       // let profileImg =
-      // JavaScript for toggling content sections
-      function showSection(event, sectionId) {
-        // Prevent default link behavior
-        event.preventDefault();
-
-        // Hide all content sections
-        const sections = document.querySelectorAll(".content-section");
-        sections.forEach((section) => {
-          section.style.display = "none";
-        });
-
-        // Remove active class from all nav links
-        const navLinks = document.querySelectorAll(".nav-link");
-        navLinks.forEach((link) => {
-          link.classList.remove("active");
-        });
-
-        // Show the selected section
-        document.getElementById(sectionId).style.display = "block";
-
-        // Add active class to the clicked nav link
-        event.currentTarget.classList.add("active");
-      }
 
       // JavaScript for Profile Update
       function updateProfile() {

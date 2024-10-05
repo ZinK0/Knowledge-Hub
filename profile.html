@@ -119,18 +119,27 @@
         <!-- Right Content Section -->
         <div class="col-lg-9 col-md-8 content-area">
           <!-- Update Profile Section -->
-          <div id="updateProfile" class="content-section">
-            <h3>Update Profile</h3>
+          <div
+            id="updateProfile"
+            class="border border-black shadow-sm p-5 rounded content-section w-50"
+          >
+            <h3 class="h3 mb-4 fw-bold">Update Profile</h3>
             <form id="profileForm">
               <div class="mb-3">
+                <label for="updateEmail" class="fw-bold form-label"
+                  >Email</label
+                >
                 <input
-                  type="text"
+                  type="email"
                   class="form-control"
-                  id="updateName"
-                  placeholder="Update Name"
+                  id="updateEmail"
+                  placeholder="Update Email"
                 />
               </div>
               <div class="mb-3">
+                <label for="updatePassword" class="fw-bold form-label"
+                  >Password</label
+                >
                 <input
                   type="password"
                   class="form-control"
@@ -140,7 +149,7 @@
               </div>
               <button
                 type="button"
-                class="btn btn-primary"
+                class="btn btn-primary w-100"
                 onclick="updateProfile()"
               >
                 Update
@@ -278,7 +287,7 @@
 
       // JavaScript for Profile Update
       function updateProfile() {
-        const name = document.getElementById("updateName").value;
+        const name = document.getElementById("updateEmail").value;
         const password = document.getElementById("updatePassword").value;
         alert(`Profile updated!\nName: ${name}\nPassword: ${password}`);
 

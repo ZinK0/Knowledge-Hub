@@ -9,7 +9,7 @@ if (loginState) {
   $("#profile-img").attr("src", loggedUser.avatar);
   $("#profile-name").text(loggedUser.userName);
 
-  $("#updateName").val(loggedUser.email);
+  $("#updateEmail").val(loggedUser.email);
   $("#updatePassword").val(loggedUser.password);
 }
 

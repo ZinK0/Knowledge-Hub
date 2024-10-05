@@ -637,7 +637,7 @@ function getNewPostImgUrl(oriImg) {
 // }
 
 async function addNewArticle(e) {
-  e.preventDefault();
+  // e.preventDefault();
 
   let findAuthor = registeredUsers.find(
     (user) => user.userID === loginState.loggedUserID
@@ -647,6 +647,7 @@ async function addNewArticle(e) {
     const imgUrl = await getNewPostImgUrl(); // Wait for the image URL to be resolved
 
     let newArticle = {
+      userID: loginState.loggedUserID,
       postID: generateUID(),
       title: $("#add-post-title").val(),
       imgUrl: imgUrl, // Use the resolved image URL here
@@ -662,7 +663,7 @@ async function addNewArticle(e) {
   } catch (error) {
     console.error("Error reading the image file: ", error);
   }
-  $("#add-post-modal").hide();
+  // $("#add-post-modal").hide();
 }
 
 function saveArticleToLocalStorage(article) {

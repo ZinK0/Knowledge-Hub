@@ -144,48 +144,55 @@ function renderArticleCard(articles) {
   });
 }
 
-$("#post-form").on("submit", (event) => {
-  //   event.preventDefault();
+$("#post-form").on("submit", editArticle());
 
+function getImgUrl(oriImg = "null") {
+  let updateImg = document.getElementById("post-img").files;
+  if (!updateImg || updateImg.length == 0) {
+    return oriImg;
+  }
+
+  const file = updateImg[0];
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => {
+    return reader.result;
+  };
+}
+
+async function editArticle() {
   // Retrieve the stored data using .data()
   let postID = $("#post-form").data("postID");
   let userID = $("#post-form").data("userID");
   let author = $("#post-form").data("author");
   let publishedDate = $("#post-form").data("publishedDate");
   let category = $("#post-form").data("category");
-  let imgUrl = $("#post-form").data("imgUrl");
 
   // Output the data to verify
   //   console.log(postID, userID, author, publishedDate, category, imgUrl);
 
   let updateTitle = $("#post-title").val();
   let updateContent = $("#post-content").val();
-  function getImgUrl(oriImg = "null") {
-    let updateImg = document.getElementById("post-img").files;
-    if (!updateImg || updateImg.length == 0) {
-      return oriImg;
-    }
 
-    const file = updateImg[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      return reader.result;
+  try {
+    let oriUrl = $("#post-form").data("imgUrl");
+
+    const imgUrl = await getImgUrl(); // Wait for the image URL to be resolved
+    let newPost = {
+      userID: userID,
+      author: author,
+      publishedDate: publishedDate,
+      category: category,
+      postID: postID,
+      title: updateTitle,
+      contents: updateContent,
+      imgUrl: imgUrl,
     };
+    updateArticle(newPost);
+  } catch (error) {
+    console.log(error);
   }
-
-  let newPost = {
-    userID: userID,
-    author: author,
-    publishedDate: publishedDate,
-    category: category,
-    postID: postID,
-    title: updateTitle,
-    contents: updateContent,
-    imgUrl: getImgUrl(imgUrl),
-  };
-  updateArticle(newPost);
-});
+}
 
 function updateArticle(newPost) {
   let title = newPost.title;

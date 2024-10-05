@@ -3,6 +3,7 @@
     "userID": "001",
     "avatar": "https://api.dicebear.com/9.x/notionists/svg?scale=100&size=64&backgroundColor=b6e3f4,c0aede,d1d4f9&seed=Felix",
     "createdDate": "12, Jan, 2024",
+    "userName": "Zin Ko",
     "email": "zinko.it@gmail.com",
     "password": "password"
   },
@@ -10,6 +11,7 @@
     "userID": "002",
     "avatar": "https://api.dicebear.com/9.x/notionists/svg?scale=100&size=64&backgroundColor=b6e3f4,c0aede,d1d4f9&seed=Aneka",
     "createdDate": "5, Jan, 2024",
+    "userName": "Javana",
     "email": "javana@gmail.com",
     "password": "password"
   },
@@ -17,21 +19,24 @@
     "userID": "003",
     "avatar": "https://api.dicebear.com/9.x/notionists/svg?scale=100&size=64&backgroundColor=b6e3f4,c0aede,d1d4f9&seed=Liliana",
     "createdDate": "8, Jan, 2024",
+    "userName": "Pannananda",
     "email": "pannananda@gmail.com",
-    "password": "jsmith456"
+    "password": "password"
   },
   {
     "userID": "004",
     "avatar": "https://api.dicebear.com/9.x/notionists/svg?scale=100&size=64&backgroundColor=b6e3f4,c0aede,d1d4f9&seed=Eden",
     "createdDate": "12, Jan, 2024",
+    "userName": "Tikkhanyana",
     "email": "tikkhanyana@gmail.com",
-    "password": "alice789"
+    "password": "password"
   },
   {
     "userID": "005",
     "avatar": "https://api.dicebear.com/9.x/notionists/svg?scale=100&size=64&backgroundColor=b6e3f4,c0aede,d1d4f9&seed=Mackenzie",
     "createdDate": "18, Jan, 2024",
+    "userName": "Nyein Shwe Yee",
     "email": "nyeinshweyee@gmail.com",
-    "password": "mark987"
+    "password": "password"
   }
 ]

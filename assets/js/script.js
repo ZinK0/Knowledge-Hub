@@ -273,7 +273,14 @@ function renderLandingPage(lastPost) {
     .on("click", function (e) {
       e.preventDefault();
 
+      //find the avatar
+      let postAuthorAvatar = registeredUsers.find(
+        (user) => user.userID === lastPost.userID
+      );
+
+      $(".modal-author-img").attr("src", postAuthorAvatar.avatar);
       // Add all articles to modal
+      $(".modal-author-img").attr("src", lastPost.authorAvatar);
       $(".modal-article-title").text(lastPost.title);
       $(".modal-text").text(lastPost.contents);
       $(".modal-img").attr("src", lastPost.imgUrl);
@@ -345,6 +352,13 @@ function renderArticleCard(articles) {
         let article = articles.find((a) => a.postID === postId);
 
         // Add the data to the modal
+        //find the avatar
+        let postAuthorAvatar = registeredUsers.find(
+          (user) => user.userID === article.userID
+        );
+
+        $(".modal-author-img").attr("src", postAuthorAvatar.avatar);
+
         $(".modal-article-title").text(article.title);
         $(".modal-text").text(article.contents);
         $(".modal-author").text(article.author);

@@ -37,7 +37,17 @@ function renderArticleCard(articles) {
       .text("Edit");
     let tableListDeleteActionButton = $("<button>")
       .addClass("btn btn-danger")
-      .text("Delete");
+      .text("Delete")
+      .on("click", () => {
+        console.log("Delete working");
+
+        // Delete article from local storage
+        let filteredArticles = articles.filter(
+          (article) => article.postID !== article.postID
+        );
+        saveLocalStorage("articles", filteredArticles);
+        location.reload();
+      });
 
     tableListCard.append(tableListCardTitle, tableListCardContents);
 

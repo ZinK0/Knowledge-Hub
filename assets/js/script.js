@@ -37,16 +37,17 @@ async function fetchData(url) {
 // Async that fetch the data from json file and display it
 async function fetchAndRender() {
   try {
+    loadLocalStorage();
     // Fetch registered users
-    registeredUsers = await fetchData("assets/data/users.json");
     console.log(registeredUsers);
 
+    // registeredUsers = await fetchData("assets/data/users.json");
+    // console.log(registeredUsers);
+
     // Fetch Articles from the json file
-    loadedArticles = await fetchData("assets/data/articles.json");
+    // loadedArticles = await fetchData("assets/data/articles.json");
     // console.log(loadedArticles);
     // saveLocalStorage("users", registeredUsers);
-    loadLocalStorage();
-    console.log(registeredUsers);
 
     checkLoginStatus();
 
@@ -151,9 +152,6 @@ async function fetchAndRender() {
       console.log(email, password);
     });
 
-    // Save articles to local storage
-    saveLocalStorage("articles", loadedArticles);
-
     // Load articles from local storage to control the delete update
 
     // Render Articles
@@ -249,6 +247,8 @@ function checkLoginStatus() {
 
 // Render All Articles Landing Page and Cards
 function renderArticles(articles) {
+  console.log(articles);
+
   // Need last page for landing page
   const lastArticle = articles[articles.length - 1];
 
@@ -513,9 +513,10 @@ function checkUserExit(registeredUsers) {
   );
 }
 
-function loadLocalStorage() {
+async function loadLocalStorage() {
   // Load articles from local storage
   localArticles = JSON.parse(localStorage.getItem("articles"));
+  console.log(loadedArticles);
 
   if (localArticles) {
     // Filter users that are not already in registeredUsers based on userID
@@ -528,6 +529,13 @@ function loadLocalStorage() {
     // Add only new unique users to registeredUsers
     loadedArticles.push(...newArticles);
     console.log(loadedArticles); // Now registeredUsers will include only unique users
+  } else {
+    // If local storage is empty, load from json file
+    // Fetch Articles from the json file
+    loadedArticles = await fetchData("assets/data/articles.json");
+
+    // Save articles to local storage
+    saveLocalStorage("articles", loadedArticles);
   }
 
   // Load registered users from local storage
@@ -545,6 +553,13 @@ function loadLocalStorage() {
     // Add only new unique users to registeredUsers
     registeredUsers.push(...newUsers);
     console.log(registeredUsers); // Now registeredUsers will include only unique users
+  } else {
+    // If local storage is empty, load from json file
+    // Fetch Users from the json file
+    registeredUsers = await fetchData("assets/data/users.json");
+
+    // Save users to local storage
+    saveLocalStorage("users", registeredUsers);
   }
 
   // Load login state from local storage

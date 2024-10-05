@@ -40,12 +40,16 @@ async function fetchAndRender() {
     // Fetch registered users
     registeredUsers = await fetchData("assets/data/users.json");
     console.log(registeredUsers);
-    saveLocalStorage("users", registeredUsers);
-    loadLocalStorage();
+    // saveLocalStorage("users", registeredUsers);
+    loadLocalStorage(registeredUsers);
+    console.log(registeredUsers);
+
     checkLoginStatus();
 
     // Authenticate the user with username and password from local storage
     function authenticateUser(registeredUsers, email, password) {
+      console.log(registeredUsers);
+
       return registeredUsers.find(
         (user) => user.email === email && user.password === password
       );
@@ -113,6 +117,8 @@ async function fetchAndRender() {
 
       // Authenticate the user
       if (!authenticateUser(registeredUsers, email, password)) {
+        console.log(registeredUsers);
+
         alert("Invalid Credentials!");
         return;
       } else {
@@ -502,7 +508,7 @@ function checkUserExit(registeredUsers) {
   );
 }
 
-function loadLocalStorage() {
+function loadLocalStorage(registeredUsers) {
   // Load articles from local storage
   loadedArticles = JSON.parse(localStorage.getItem("articles"));
 
@@ -511,8 +517,16 @@ function loadLocalStorage() {
   console.log(localRegisteredUsers);
 
   if (localRegisteredUsers) {
-    registeredUsers.concat(localRegisteredUsers);
-    console.log(registeredUsers);
+    // Filter users that are not already in registeredUsers based on userID
+    let newUsers = localRegisteredUsers.filter((localUser) => {
+      return !registeredUsers.some(
+        (registeredUser) => registeredUser.userID === localUser.userID
+      );
+    });
+
+    // Add only new unique users to registeredUsers
+    registeredUsers.push(...newUsers);
+    console.log(registeredUsers); // Now registeredUsers will include only unique users
   }
 
   // Load login state from local storage
@@ -528,6 +542,8 @@ function loadLocalStorage() {
     let loggedUser = localRegisteredUsers.find(
       (user) => user.userID === avatarId
     );
+    console.log(localRegisteredUsers);
+
     console.log(loggedUser);
 
     if (loggedUser) {

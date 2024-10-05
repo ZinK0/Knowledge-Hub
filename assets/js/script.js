@@ -40,8 +40,12 @@ async function fetchAndRender() {
     // Fetch registered users
     registeredUsers = await fetchData("assets/data/users.json");
     console.log(registeredUsers);
+
+    // Fetch Articles from the json file
+    loadedArticles = await fetchData("assets/data/articles.json");
+    // console.log(loadedArticles);
     // saveLocalStorage("users", registeredUsers);
-    loadLocalStorage(registeredUsers);
+    loadLocalStorage();
     console.log(registeredUsers);
 
     checkLoginStatus();
@@ -147,12 +151,10 @@ async function fetchAndRender() {
       console.log(email, password);
     });
 
-    // Fetch Articles from the json file
-    loadedArticles = await fetchData("assets/data/articles.json");
-    // console.log(loadedArticles);
-
     // Save articles to local storage
     saveLocalStorage("articles", loadedArticles);
+
+    // Load articles from local storage to control the delete update
 
     // Render Articles
     renderArticles(loadedArticles);
@@ -511,9 +513,22 @@ function checkUserExit(registeredUsers) {
   );
 }
 
-function loadLocalStorage(registeredUsers) {
+function loadLocalStorage() {
   // Load articles from local storage
-  loadedArticles = JSON.parse(localStorage.getItem("articles"));
+  localArticles = JSON.parse(localStorage.getItem("articles"));
+
+  if (localArticles) {
+    // Filter users that are not already in registeredUsers based on userID
+    let newArticles = localArticles.filter((localArticle) => {
+      return !loadedArticles.some(
+        (loadedArticle) => loadedArticle.postID === localArticle.postID
+      );
+    });
+
+    // Add only new unique users to registeredUsers
+    loadedArticles.push(...newArticles);
+    console.log(loadedArticles); // Now registeredUsers will include only unique users
+  }
 
   // Load registered users from local storage
   let localRegisteredUsers = JSON.parse(localStorage.getItem("users"));

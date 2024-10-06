@@ -27,6 +27,7 @@
 ## Technologies Used
 
 - **Frontend**: HTML, CSS, JavaScript, jQuery, Bootstrap
+- **API** : DiceBear
 - **Data Storage**: LocalStorage (no backend used)
 
 ## Project Setup

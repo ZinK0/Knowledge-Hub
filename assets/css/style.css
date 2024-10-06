@@ -58,7 +58,7 @@ body {
 }
 
 .card-title {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 /* Card Text  */
@@ -149,12 +149,13 @@ footer p {
 } */
 
 /* Hide the Nav Link when for mobile  */
-@media (max-width: 1024px) {
+@media (max-width: 1000px) {
   .offcanvas-collapse {
     position: fixed;
+    margin-left: auto;
     top: 56px; /* Height of navbar */
     bottom: 0;
-    left: 180%;
+    left: 100%;
     width: 100%;
     padding-right: 1rem;
     padding-left: 1rem;
@@ -179,8 +180,14 @@ footer p {
 }
 
 @media (max-width: 767.98px) {
-  .offcanvas-collapse {
-    left: 170%;
+  .landing-page-section {
+    display: none;
   }
-}
+  #nav-link-container {
+    margin-left: 0 !important;
+    width: 200px;
+  }
+  .offcanvas-collapse {
+    left: 100%;
+  }
 }

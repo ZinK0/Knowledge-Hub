@@ -14,7 +14,7 @@
 
 ## Demo
 
-- [Live Demo Link ](https://yourusername.github.io/knowledge-hub/)
+- [Live Demo Link ](https://zink0.github.io/Knowledge-Hub/)
 
 ## Features
 

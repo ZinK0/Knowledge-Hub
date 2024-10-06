@@ -9,6 +9,7 @@
   - [Demo](#demo)
   - [Features](#features)
   - [Technologies Used](#technologies-used)
+  - [Future Plans](#future-plans)
   - [Project Setup](#project-setup)
 
 ## Demo
@@ -29,6 +30,11 @@
 - **Frontend**: HTML, CSS, JavaScript, jQuery, Bootstrap
 - **API** : DiceBear
 - **Data Storage**: LocalStorage (no backend used)
+
+## Future Plans
+
+- **Search Posts**: User can search the articles
+- **News**: User can read news all in one place
 
 ## Project Setup
 

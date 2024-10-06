@@ -199,6 +199,133 @@
             </div>
           </div>
         </div>
+        <!-- Policy Modal  -->
+        <div
+          class="modal fade"
+          id="policy-modal"
+          tabindex="-1"
+          aria-hidden="true"
+          aria-labelledby="policy-modal"
+        >
+          <div
+            class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg"
+          >
+            <div class="policy-modal-content modal-content">
+              <div class="modal-header border-0">
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body p-5 pt-3" id="policy-modal-body">
+                <!-- Header Section -->
+                <div class="privacy-header">
+                  <h1>Privacy Policy</h1>
+                  <p>Your privacy is important to us.</p>
+                </div>
+
+                <!-- Main Content -->
+                <div class="container">
+                  <div class="privacy-section">
+                    <h4>1. Information We Collect</h4>
+                    <p>We may collect the following types of information:</p>
+                    <ul>
+                      <li>
+                        <strong>Personal Information:</strong> Your name, email
+                        address, and any other information you provide when
+                        signing up.
+                      </li>
+                      <li>
+                        <strong>Usage Data:</strong> Details on your
+                        interactions with the platform, including articles
+                        viewed or created and general browsing activities.
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="privacy-section">
+                    <h4>2. How We Use Your Information</h4>
+                    <p>Your information is used for the following purposes:</p>
+                    <ul>
+                      <li>
+                        To provide and maintain the platform's features and
+                        services.
+                      </li>
+                      <li>
+                        To enhance the user experience by analyzing trends and
+                        usage data.
+                      </li>
+                      <li>To communicate platform updates or relevant news.</li>
+                      <li>To ensure platform security and prevent fraud.</li>
+                    </ul>
+                  </div>
+
+                  <div class="privacy-section">
+                    <h4>3. Data Security</h4>
+                    <p>
+                      We employ technical and organizational measures to protect
+                      your data. However, transmission over the internet is not
+                      100% secure.
+                    </p>
+                  </div>
+
+                  <div class="privacy-section">
+                    <h4>4. Cookies and Tracking Technologies</h4>
+                    <p>
+                      We may use cookies to enhance user experience. You can
+                      disable cookies in your browser settings, but this may
+                      impact functionality.
+                    </p>
+                  </div>
+
+                  <div class="privacy-section">
+                    <h4>5. Third-Party Services</h4>
+                    <p>
+                      We may share some data with third-party services to
+                      enhance platform functionality, but these third parties
+                      are prohibited from using it for other purposes.
+                    </p>
+                  </div>
+
+                  <div class="privacy-section">
+                    <h4>6. Your Data Rights</h4>
+                    <p>
+                      You have the right to access, update, or delete your
+                      information. You can also withdraw consent at any time.
+                      Contact us at [Your Email] to exercise these rights.
+                    </p>
+                  </div>
+
+                  <div class="privacy-section">
+                    <h4>7. Changes to This Policy</h4>
+                    <p>
+                      We may update this Privacy Policy. Please check this page
+                      periodically for changes.
+                    </p>
+                  </div>
+
+                  <div class="privacy-section">
+                    <h4>8. Contact Us</h4>
+                    <p>
+                      If you have any questions about this policy, please
+                      contact us at
+                      <a href="mailto:mrzinko.it@gmail.com"
+                        >mrzinko.it@gmail.com</a
+                      >
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Footer Section -->
+                <div class="privacy-footer">
+                  <p>&copy; 2024 Knowledge Hub. All rights reserved.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- Login Form Modal  -->
         <div
@@ -408,7 +535,13 @@
             >
           </li>
           <li class="list-inline-item">
-            <a href="#" class="text-info">Privacy Policy</a>
+            <a
+              href="#"
+              data-bs-target="#policy-modal"
+              data-bs-toggle="modal"
+              class="text-info"
+              >Privacy Policy</a
+            >
           </li>
         </ul>
       </div>

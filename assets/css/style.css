@@ -122,6 +122,9 @@ body {
 }
 
 @media (max-width: 767.98px) {
+  .landing-page-section {
+    display: none;
+  }
   #nav-link-container {
     margin-left: 0 !important;
     width: 200px;

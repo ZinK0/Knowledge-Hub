@@ -294,7 +294,7 @@
       function updateProfile() {
         const name = document.getElementById("updateEmail").value;
         const password = document.getElementById("updatePassword").value;
-        // alert(`Profile updated!\nName: ${name}\nPassword: ${password}`);
+        alert(`Profile updated!\nName: ${name}\nPassword: ${password}`);
 
         const updatedUsers = users.map((user) => {
           if (user.userID === loginState.loggedUserID) {

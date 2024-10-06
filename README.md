@@ -1,5 +1,7 @@
 # Knowledge Hub
 
+![screenshot](https://raw.githubusercontent.com/ZinK0/Knowledge-Hub/refs/heads/main/assets/img/Knowledge%20Hub.png)
+
 **Knowledge Hub** is a simple front-end blogging platform where users can create accounts, write blog posts, and manage their content. It includes features like user authentication, post creation, profile management, and post management. This project is built using HTML, CSS, JavaScript, jQuery, Bootstrap, and uses `LocalStorage` to store data.
 
 ## Table of Contents

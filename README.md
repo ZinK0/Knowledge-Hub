@@ -33,7 +33,7 @@
 - **Create, Edit, Delete Posts**: Authenticated users can create new blog posts, edit their own posts, and delete posts they have written.
 - **User Profiles**: Each user has a profile that displays their information and their blog posts.
 - **Post Load**: Posts are loaded with load more button that allows users to load see more posts.
-- **Predefined Images**: Users can select predefined images for their profile and blog posts, stored locally in the assets folder.
+- **Profile Images**: Users can select dicebear avatar for their profile and blog posts, stored locally in the local storage.
 - **Responsive Design**: The platform is responsive and adjusts to different screen sizes.
 
 ## Technologies Used

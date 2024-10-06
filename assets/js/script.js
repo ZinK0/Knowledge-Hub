@@ -37,6 +37,7 @@ async function fetchData(url) {
 // Async that fetch the data from json file and display it
 async function fetchAndRender() {
   try {
+    loadedArticles = await fetchData("assets/data/articles.json");
     loadLocalStorage();
     // Fetch registered users
     console.log(registeredUsers);
@@ -45,7 +46,6 @@ async function fetchAndRender() {
     // console.log(registeredUsers);
 
     // Fetch Articles from the json file
-    // loadedArticles = await fetchData("assets/data/articles.json");
     // console.log(loadedArticles);
     // saveLocalStorage("users", registeredUsers);
 

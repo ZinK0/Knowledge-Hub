@@ -42,7 +42,7 @@ async function fetchAndRender() {
     // Fetch registered users
     console.log(registeredUsers);
 
-    // registeredUsers = await fetchData("assets/data/users.json");
+    registeredUsers = await fetchData("assets/data/users.json");
     // console.log(registeredUsers);
 
     // Fetch Articles from the json file
@@ -277,6 +277,7 @@ function renderLandingPage(lastPost) {
       let postAuthorAvatar = registeredUsers.find(
         (user) => user.userID === lastPost.userID
       );
+      console.log(postAuthorAvatar);
 
       $(".modal-author-img").attr("src", postAuthorAvatar.avatar);
       // Add all articles to modal
